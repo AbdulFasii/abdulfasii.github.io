@@ -1,50 +1,818 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="/html/assets/css/style.css" />
+    <meta
+      name="author"
+      content="Abdul Fasith" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Abdul Fasith's Portfolio - React Developer showcasing web development projects" />
+    <link
+      rel="shortcut icon"
+      href="html/images/favicon.png" />
+    <title>Portfolio | Abdul Fasith</title>
+    <link
+      rel="stylesheet"
+      href="html/assets/css/style.css?v1.0.0" />
+    <style>
+      /* Particle Background */
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f8f9fa 50%,
+          #e9ecef 100%
+        );
+      }
+
+      .nk-pages {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Project Cards */
+      .project-card {
+        background: #ffffff;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .project-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        border-color: rgba(43, 92, 253, 0.5);
+        box-shadow:
+          0 25px 50px rgba(43, 92, 253, 0.15),
+          0 0 30px rgba(43, 92, 253, 0.08);
+      }
+
+      .project-card .card-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .project-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          rgba(43, 92, 253, 0.2),
+          rgba(43, 92, 253, 0.05)
+        );
+        border: 1px solid rgba(43, 92, 253, 0.3);
+      }
+
+      .tech-badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.7rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .tech-badge.javascript {
+        color: #f7df1e;
+        border-color: rgba(247, 223, 30, 0.3);
+      }
+
+      /* TypeScript */
+      .tech-badge.typescript {
+        color: #3178c6;
+        border-color: rgba(49, 120, 198, 0.3);
+      }
+
+      /* React */
+      .tech-badge.react {
+        color: #61dafb;
+        border-color: rgba(97, 218, 251, 0.3);
+      }
+
+      .tech-badge.css {
+        color: #3b53b4;
+        border-color: rgba(38, 77, 228, 0.3);
+      }
+
+      .tech-badge.angular {
+        background: rgba(221, 0, 49, 0.15);
+        color: #dd0031;
+        border-color: rgba(221, 0, 49, 0.3);
+      }
+
+      /* Light Theme Text */
+      .is-light-theme {
+        color: #1f2937;
+      }
+
+      .is-light-theme h1,
+      .is-light-theme h2,
+      .is-light-theme h3,
+      .is-light-theme h4,
+      .is-light-theme h5 {
+        color: #111827;
+      }
+
+      .is-light-theme .text-muted {
+        color: #6b7280 !important;
+      }
+
+      .text-white {
+        color: #111827 !important;
+      }
+
+      /* Glowing Title */
+      .glow-title {
+        background: linear-gradient(
+          135deg,
+          #2b5cfd,
+          #6366f1,
+          #8b5cf6
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Section Styling */
+      .section-light {
+        background: transparent;
+      }
+
+      /* Footer for Light Theme */
+      .footer-light {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      /* Button Styling */
+      .btn-glow {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .btn-glow:hover {
+        box-shadow: 0 0 20px rgba(43, 92, 253, 0.4);
+      }
+
+      /* Private Badge */
+      .private-badge {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.05);
+        color: #6b7280;
+        margin-left: 0.5rem;
+      }
+
+      /* Scroll Indicator */
+      .scroll-indicator {
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* Updated date styling */
+      .update-date {
+        font-size: 0.75rem;
+        color: #6b7280;
+      }
+    </style>
   </head>
-  <body class="bg-gray">
-    <section
-      class="nk-error-section nk-sectin-space-lg pt-120 pt-xl-180 overflow-hidden"
-    >
-      <div class="nk-mask blur-1 left top"></div>
-      <div class="nk-mask blur-1 right bottom"></div>
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="">
-            <div class="nk-block-head">
-              <div class="nk-section-head">
-                <img
-                  src="/html/assets/images/construction.jpeg"
-                  alt="icon"
-                  class="w-50"
-                />
-                <h2 class="nk-block-title m-0 mb-2 mb-md-4">
-                  this Page is under Construction
-                </h2>
-                <p class="nk-block-text lead"></p>
+
+  <body
+    class="nk-body is-light-theme"
+    data-navbar-collapse="xl">
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <div class="preloader">
+      <div class="loader"></div>
+    </div>
+
+    <div class="nk-app-root">
+      <main class="nk-pages">
+        <!-- Hero Section Start -->
+        <section
+          class="nk-section section-light py-6 py-lg-7">
+          <div class="container">
+            <div
+              class="row justify-content-center text-center">
+              <div class="col-lg-8 col-xl-7">
+                <div
+                  class="nk-section-head pb-0"
+                  data-aos="fade-up">
+                  <span
+                    class="badge badge-md text-bg-primary text-uppercase rounded-pill mb-3">
+                    <em class="icon ni ni-code me-1"></em>
+                    Portfolio
+                  </span>
+                  <h1 class="display-4 fw-bold mb-3">
+                    My
+                    <span class="glow-title">Projects</span>
+                  </h1>
+                  <p
+                    class="lead mb-4"
+                    style="color: #4b5563">
+                    A collection of web applications and
+                    projects demonstrating expertise in
+                    React, TypeScript, Angular, and modern
+                    web development technologies.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Hero Section End -->
+
+        <!-- Projects Section Start -->
+        <section
+          class="nk-section section-light py-2 py-lg-4">
+          <div class="container">
+            <div class="row gy-4">
+              <!-- Project 5: Ezforce - Workforce Management -->
+              <div
+                class="col-md-6 col-lg-4"
+                data-aos="fade-up"
+                data-aos-delay="200">
+                <div class="card project-card border-0">
+                  <div class="card-body p-4">
+                    <div
+                      class="d-flex align-items-start justify-content-between mb-3">
+                      <div class="project-icon">
+                        <em
+                          class="icon ni ni-users text-primary"></em>
+                      </div>
+                      <span class="private-badge"
+                        >Private</span
+                      >
+                    </div>
+                    <h5 class="mb-2 text-white">
+                      Ezforce - Workforce Management
+                    </h5>
+                    <p
+                      class="text-muted fs-14 mb-3"
+                      style="min-height: 60px">
+                      Comprehensive ERM web application with
+                      dashboard analytics, employee &
+                      project management, billing,
+                      invoicing, and Kanban task boards.
+                    </p>
+                    <div
+                      class="d-flex flex-wrap gap-2 mb-3">
+                      <span class="tech-badge typescript"
+                        >TypeScript</span
+                      >
+                      <span class="tech-badge react"
+                        >React 18</span
+                      >
+                    </div>
+                    <p class="update-date mb-3">
+                      <em class="icon ni ni-clock me-1"></em
+                      >BiznessForce Software Solutions
+                    </p>
+                    <div class="mt-auto">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-primary btn-glow w-100 disabled">
+                        <em
+                          class="icon ni ni-briefcase me-1"></em>
+                        Enterprise Project
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 6: MIA - Healthcare Management -->
+              <div
+                class="col-md-6 col-lg-4"
+                data-aos="fade-up"
+                data-aos-delay="250">
+                <div class="card project-card border-0">
+                  <div class="card-body p-4">
+                    <div
+                      class="d-flex align-items-start justify-content-between mb-3">
+                      <div class="project-icon">
+                        <em
+                          class="icon ni ni-building text-primary"></em>
+                      </div>
+                      <span class="private-badge"
+                        >Private</span
+                      >
+                    </div>
+                    <h5 class="mb-2 text-white">
+                      MIA – Healthcare Platform
+                    </h5>
+                    <p
+                      class="text-muted fs-14 mb-3"
+                      style="min-height: 60px">
+                      Healthcare management platform with
+                      ROD/ROB modules, housekeeping, roster
+                      management, messaging, and real-time
+                      notifications.
+                    </p>
+                    <div
+                      class="d-flex flex-wrap gap-2 mb-3">
+                      <span class="tech-badge typescript"
+                        >TypeScript</span
+                      >
+                      <span class="tech-badge react"
+                        >React 18</span
+                      >
+                    </div>
+                    <p class="update-date mb-3">
+                      <em class="icon ni ni-clock me-1"></em
+                      >BiznessForce Software Solutions
+                    </p>
+                    <div class="mt-auto">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-primary btn-glow w-100 disabled">
+                        <em
+                          class="icon ni ni-briefcase me-1"></em>
+                        Enterprise Project
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Project 3: EZForce Mobile App -->
+              <div
+                class="col-md-6 col-lg-4"
+                data-aos="fade-up"
+                data-aos-delay="100">
+                <div class="card project-card border-0">
+                  <div class="card-body p-4">
+                    <div
+                      class="d-flex align-items-start justify-content-between mb-3">
+                      <div class="project-icon">
+                        <em
+                          class="icon ni ni-mobile text-primary"></em>
+                      </div>
+                      <span class="private-badge"
+                        >Private</span
+                      >
+                    </div>
+                    <h5 class="mb-2 text-white">
+                      EZForce Mobile App
+                    </h5>
+                    <p
+                      class="text-muted fs-14 mb-3"
+                      style="min-height: 60px">
+                      Mobile app to manage projects, sites,
+                      employees, documents, timesheets &
+                      payroll in one efficient platform.
+                    </p>
+                    <div
+                      class="d-flex flex-wrap gap-2 mb-3">
+                      <span class="tech-badge typescript"
+                        >TypeScript</span
+                      >
+                      <span class="tech-badge react"
+                        >React Native</span
+                      >
+                    </div>
+                    <p class="update-date mb-3">
+                      <em class="icon ni ni-clock me-1"></em
+                      >Updated Nov 27, 2025
+                    </p>
+                    <div class="mt-auto">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-primary btn-glow w-100 disabled">
+                        <em
+                          class="icon ni ni-briefcase me-1"></em>
+                        Enterprise Project
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Project 8: iTab Booking -->
+              <div
+                class="col-md-6 col-lg-4"
+                data-aos="fade-up"
+                data-aos-delay="350">
+                <div class="card project-card border-0">
+                  <div class="card-body p-4">
+                    <div
+                      class="d-flex align-items-start justify-content-between mb-3">
+                      <div class="project-icon">
+                        <em
+                          class="icon ni ni-calendar-booking text-primary"></em>
+                      </div>
+                      <span class="private-badge"
+                        >Private</span
+                      >
+                    </div>
+                    <h5 class="mb-2 text-white">
+                      iTab Booking
+                    </h5>
+                    <p
+                      class="text-muted fs-14 mb-3"
+                      style="min-height: 60px">
+                      Healthcare transport booking system
+                      with Kanban dashboard, drag-and-drop,
+                      real-time chat, and A&E workflow
+                      management.
+                    </p>
+                    <div
+                      class="d-flex flex-wrap gap-2 mb-3">
+                      <span class="tech-badge typescript"
+                        >TypeScript</span
+                      >
+                      <span class="tech-badge react"
+                        >React</span
+                      >
+                    </div>
+                    <p class="update-date mb-3">
+                      <em class="icon ni ni-clock me-1"></em
+                      >BiznessForce Software Solutions
+                    </p>
+                    <div class="mt-auto">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-primary btn-glow w-100 disabled">
+                        <em
+                          class="icon ni ni-briefcase me-1"></em>
+                        Enterprise Project
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Project 4: Biznessforce UI Library -->
+              <div
+                class="col-md-6 col-lg-4"
+                data-aos="fade-up"
+                data-aos-delay="150">
+                <div class="card project-card border-0">
+                  <div class="card-body p-4">
+                    <div
+                      class="d-flex align-items-start justify-content-between mb-3">
+                      <div class="project-icon">
+                        <em
+                          class="icon ni ni-package text-primary"></em>
+                      </div>
+                      <span class="private-badge"
+                        >Private</span
+                      >
+                    </div>
+                    <h5 class="mb-2 text-white">
+                      Biznessforce UI Library
+                    </h5>
+                    <p
+                      class="text-muted fs-14 mb-3"
+                      style="min-height: 60px">
+                      React common component libraries for
+                      applications with reusable UI elements
+                      and consistent design patterns.
+                    </p>
+                    <div
+                      class="d-flex flex-wrap gap-2 mb-3">
+                      <span class="tech-badge typescript"
+                        >TypeScript</span
+                      >
+                      <span class="tech-badge react"
+                        >React</span
+                      >
+                    </div>
+                    <p class="update-date mb-3">
+                      <em class="icon ni ni-clock me-1"></em
+                      >Updated Oct 30, 2025
+                    </p>
+                    <div class="mt-auto">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-primary btn-glow w-100 disabled">
+                        <em
+                          class="icon ni ni-briefcase me-1"></em>
+                        Enterprise Project
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Project 7: RichEditor to PDF -->
+              <div
+                class="col-md-6 col-lg-4"
+                data-aos="fade-up"
+                data-aos-delay="300">
+                <div class="card project-card border-0">
+                  <div class="card-body p-4">
+                    <div
+                      class="d-flex align-items-start justify-content-between mb-3">
+                      <div class="project-icon">
+                        <em
+                          class="icon ni ni-file-pdf text-primary"></em>
+                      </div>
+                      <span class="private-badge"
+                        >Private</span
+                      >
+                    </div>
+                    <h5 class="mb-2 text-white">
+                      RichEditor to PDF
+                    </h5>
+                    <p
+                      class="text-muted fs-14 mb-3"
+                      style="min-height: 60px">
+                      Document creation platform with
+                      QuillJS editor and PDFMake for
+                      professional PDF generation with
+                      customizable templates.
+                    </p>
+                    <div
+                      class="d-flex flex-wrap gap-2 mb-3">
+                      <span class="tech-badge javascript"
+                        >JavaScript</span
+                      >
+                      <span class="tech-badge react"
+                        >React</span
+                      >
+                    </div>
+                    <p class="update-date mb-3">
+                      <em class="icon ni ni-clock me-1"></em
+                      >Open Source
+                    </p>
+                    <div class="mt-auto">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-primary btn-glow w-100 disabled">
+                        <em
+                          class="icon ni ni-briefcase me-1"></em>
+                        Enterprise Project
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 9: Fresh-Cart -->
+              <div
+                class="col-md-6 col-lg-4"
+                data-aos="fade-up"
+                data-aos-delay="400">
+                <div class="card project-card border-0">
+                  <div class="card-body p-4">
+                    <div
+                      class="d-flex align-items-start justify-content-between mb-3">
+                      <div class="project-icon">
+                        <em
+                          class="icon ni ni-cart text-primary"></em>
+                      </div>
+                      <span
+                        class="private-badge"
+                        style="
+                          background: rgba(
+                            34,
+                            197,
+                            94,
+                            0.2
+                          );
+                          color: #22c55e;
+                        "
+                        >Public</span
+                      >
+                    </div>
+                    <h5 class="mb-2 text-white">
+                      Fresh-Cart
+                    </h5>
+                    <p
+                      class="text-muted fs-14 mb-3"
+                      style="min-height: 60px">
+                      E-commerce application built with
+                      React, featuring shopping cart,
+                      product management and checkout flow.
+                    </p>
+                    <div
+                      class="d-flex flex-wrap gap-2 mb-3">
+                      <span class="tech-badge javascript"
+                        >JavaScript</span
+                      >
+                      <span class="tech-badge react"
+                        >React</span
+                      >
+                      <span class="tech-badge css"
+                        >Bootstrap</span
+                      >
+                    </div>
+                    <p class="update-date mb-3">
+                      <em class="icon ni ni-clock me-1"></em
+                      >Open Source
+                    </p>
+                    <div class="mt-auto">
+                      <a
+                        href="https://github.com/AbdulFasii/Fresh-Cart"
+                        target="_blank"
+                        class="btn btn-sm btn-primary btn-glow w-100">
+                        <em
+                          class="icon ni ni-github me-1"></em>
+                        View Repository
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Projects Section End -->
+        <ul
+          class="nk-btn-group justify-content-center pt-3 pb-5">
+          <li
+            data-aos="fade-up"
+            data-aos-delay="100">
+            <a
+              href="/index.html"
+              class="btn btn-outline-primary btn-glow">
+              <em class="icon ni ni-arrow-left me-1"></em>
+
+              Exit
+            </a>
+          </li>
+        </ul>
+      </main>
+
+      <!-- Footer Start -->
+      <footer class="nk-footer footer-light">
+        <div class="nk-footer-bottom py-0">
+          <div class="container">
+            <div
+              class="nk-footer-content row align-items-center justify-content-between">
+              <div class="col-lg-6 px-lg-0">
+                <p
+                  class="nk-footer-copyright-text text-center text-lg-start fs-12 mb-0"
+                  style="color: #6b7280">
+                  &copy; 2011 -
+                  <span id="currentYear"></span> Abdul
+                  Fasith. All Rights Reserved.
+                </p>
+              </div>
+              <div class="col-lg-6 px-lg-0">
                 <ul
-                  class="nk-btn-group pt-4 justify-content-center pt-3 pt-md-5 pb-2"
-                >
+                  class="nk-footer-copyright justify-content-center justify-content-lg-end mb-0">
                   <li>
-                    <a href="/index.html" class="btn btn-primary">
-                      Go Back Home
-                    </a>
+                    <a
+                      class="nk-footer-text fs-12"
+                      style="color: #9ca3af"
+                      href="/index.html"
+                      >Home</a
+                    >
                   </li>
-                  <!-- <li>
-                    <a href="index.html" class="btn btn-outline-primary">
-                      Try Again
-                    </a>
-                  </li> -->
+                  <li>
+                    <a
+                      class="nk-footer-text fs-12"
+                      style="color: #9ca3af"
+                      href="#"
+                      >Privacy Policy</a
+                    >
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
+      </footer>
+      <!-- Footer End -->
+
+      <!-- Scroll to Top -->
+      <a
+        href="#"
+        class="scroll-top shadow animate animate-infinite animate-pulse animate-duration-2">
+        <em class="icon ni ni-chevrons-up"></em>
+      </a>
+
+      <!-- Sticky Social Badge -->
+      <div
+        class="nk-sticky-badge d-none d-lg-block shadow-lg">
+        <ul>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/abdul-fasith-431002225/"
+              target="_blank"
+              class="nk-sticky-badge-icon bg-blue"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-title="LinkedIn">
+              <em class="icon ni ni-linkedin"></em>
+            </a>
+          </li>
+          <li class="border-start border-light">
+            <a
+              href="mailto:s.abdulfasiht@gmail.com"
+              target="_blank"
+              class="nk-sticky-badge-icon bg-light"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-title="Gmail">
+              <img
+                src="html/images/icon/gmail.png"
+                alt="Gmail"
+                width="20" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/7373833534"
+              target="_blank"
+              class="nk-sticky-badge-icon bg-green"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-title="WhatsApp">
+              <em class="icon ni ni-whatsapp"></em>
+            </a>
+          </li>
+        </ul>
       </div>
-    </section>
+    </div>
+
+    <script src="html/assets/js/bundle.js?v1.0.0"></script>
+    <script src="html/assets/js/scripts.js?v1.0.0"></script>
+
+    <!-- Particles.js Configuration -->
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 80,
+            density: { enable: true, value_area: 800 },
+          },
+          color: { value: "#2b5cfd" },
+          shape: { type: "circle" },
+          opacity: { value: 0.3, random: true },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#2b5cfd",
+            opacity: 0.2,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "grab" },
+            onclick: { enable: true, mode: "push" },
+            resize: true,
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: { opacity: 0.5 },
+            },
+            push: { particles_nb: 4 },
+          },
+        },
+        retina_detect: true,
+      });
+    </script>
   </body>
 </html>
